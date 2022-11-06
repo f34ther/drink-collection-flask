@@ -22,7 +22,7 @@ def signup():
             db.session.commit()
 
             flash(
-                f'You have successfully created a user account {email}', 'User-created')
+                f'You have successfully created a user account {email}', 'ser-created')
             return redirect(url_for('site.home'))
 
     except:
