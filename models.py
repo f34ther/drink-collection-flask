@@ -59,14 +59,16 @@ class Drink(db.Model):
     mixer = db.Column(db.String(150), nullable=True)
     amount_of_mixer = db.Column(db.String(150), nullable=True)
     blend = db.Column(db.String(150), nullable=False)
+    user_token = db.Column(db.String, db.ForeignKey("user.token"), nullable=False)
 
-    def __init__(self, base='', amount_of_base='', mixer='', amount_of_mixer='', blend=''):
+    def __init__(self, base='', amount_of_base='', mixer='', amount_of_mixer='', blend='', user_token=''):
         self.id = self.set_id()
         self.base = base
         self.amount_of_base = amount_of_base
         self.mixer = mixer
         self.amount_of_mixer = amount_of_mixer
         self.blend = blend
+        self.user_token = user_token
 
     def __repr__(self):
         return f'The following drink recipe has been added to your Favorites: {self.base}, {self.amount_of_base}, {self.mixer}, {self.amount_of_mixer}, {self.blend}.'
@@ -77,8 +79,8 @@ class Drink(db.Model):
 
 class DrinkSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'base', 'amount of base',
-                  'mixer', 'amount of mixer', 'blend']
+        fields = ['id', 'base', 'amount_of_base',
+                  'mixer', 'amount_of_mixer', 'blend']
 
 
 drink_schema = DrinkSchema()

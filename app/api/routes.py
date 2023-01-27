@@ -13,10 +13,11 @@ def create_drink(current_user_token):
     mixer = request.json['mixer']
     amount_of_mixer = request.json['amount_of_mixer']
     blend = request.json['blend']
+    user_token = current_user_token.token
 
     print(f'Test: {current_user_token}')
 
-    drink = Drink(base, amount_of_base, mixer, amount_of_mixer, blend)
+    drink = Drink(base, amount_of_base, mixer, amount_of_mixer, blend, user_token=user_token)
 
     db.session.add(drink)
     db.session.commit()
